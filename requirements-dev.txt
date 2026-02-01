@@ -1,5 +1,5 @@
-pre-commit
-black
-ruff
-pytest-cov
-codecov
+pre-commit==4.5.1
+black==26.1.0
+ruff==0.14.14
+pytest-cov==7.0.0
+codecov==2.1.13

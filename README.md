@@ -1,4 +1,4 @@
-[![CI](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml/badge.svg)](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml)
+[![CI](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml/badge.svg)](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml) [![Coverage](https://codecov.io/gh/ignacygorecki-hub/cwiczenia/branch/main/graph/badge.svg)](https://codecov.io/gh/ignacygorecki-hub/cwiczenia)
 
 # python-project
 
@@ -30,6 +30,17 @@ Run tests locally:
 ## CI
 
 A GitHub Actions workflow runs `pytest` on pushes and pull requests to `main`. Check the badge at the top of this file to see the build status.
+
+## Docker
+
+A minimal Docker image is provided via the `Dockerfile` in the project root. Build and run with:
+
+```bash
+docker build -t python-project:latest .
+docker run --rm python-project:latest
+```
+
+> Note: you can add any system deps required by extra packages to `Dockerfile`.
 
 ---
 
