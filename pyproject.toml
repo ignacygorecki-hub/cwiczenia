@@ -1,0 +1,15 @@
+[project]
+name = "python-project"
+version = "0.0.0"
+description = "Minimal Python project scaffold"
+authors = [ { name = "Ignacy Gorecki", email = "ignacygorecki@gmail.com" } ]
+readme = "README.md"
+license = { text = "MIT" }
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
