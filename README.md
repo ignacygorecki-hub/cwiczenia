@@ -1,5 +1,7 @@
 [![CI](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml/badge.svg)](https://github.com/ignacygorecki-hub/cwiczenia/actions/workflows/ci.yml) [![Coverage](https://codecov.io/gh/ignacygorecki-hub/cwiczenia/branch/main/graph/badge.svg)](https://codecov.io/gh/ignacygorecki-hub/cwiczenia)
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-brightgreen)](https://ignacygorecki-hub.github.io/cwiczenia/)
+
 # python-project
 
 Minimal Python project scaffold created by GitHub Copilot.

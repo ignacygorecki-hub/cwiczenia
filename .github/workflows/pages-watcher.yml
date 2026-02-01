@@ -1,0 +1,54 @@
+name: Pages watcher
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  wait_for_pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Pages to be reachable
+        id: wait
+        run: |
+          set -e
+          url="https://ignacygorecki-hub.github.io/cwiczenia/"
+          echo "Checking $url"
+          max=15
+          i=0
+          while [ $i -lt $max ]; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$url" || echo "000")
+            echo "Attempt $((i+1)): HTTP $code"
+            if [ "$code" = "200" ]; then
+              echo "pages_up=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 20
+            i=$((i+1))
+          done
+          echo "pages_up=false" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Create issue when site is live
+        if: steps.wait.outputs.pages_up == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'GitHub Pages: site published',
+              body: `The Pages site is available at https://ignacygorecki-hub.github.io/cwiczenia/ (published after commit ${context.sha}).`
+            })
+
+      - name: Create issue when publish failed
+        if: steps.wait.outputs.pages_up == 'false'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'GitHub Pages: failed to publish within timeout',
+              body: `Pages site did not become available within timeout after commit ${context.sha}. Check the pages workflow run for failures.`
+            })
