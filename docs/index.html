@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cwiczenia — RT examples</title>
+    <style>
+      body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+      h1 { margin-bottom: .2rem }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .card { border: 1px solid #e6e6e6; padding: .5rem; border-radius: 6px; }
+      img { width: 100%; height: auto; display:block }
+      pre { background:#f6f8fa;padding:1rem;border-radius:6px }
+    </style>
+  </head>
+  <body>
+    <h1>Radiotherapy examples — cwiczenia</h1>
+    <p>Automated examples generated from the repository. Click an image to open the full-size PNG.</p>
+
+    <h2>Examples</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>CT slice (sample)</h3>
+        <a href="assets/images/CT_small.png" target="_blank"><img src="assets/images/CT_small.png" alt="CT sample"></a>
+        <p>Saved sample CT extracted from pydicom test files.</p>
+      </div>
+
+      <div class="card">
+        <h3>CT + Dose overlay</h3>
+        <a href="assets/images/overlay_sample.png" target="_blank"><img src="assets/images/overlay_sample.png" alt="CT + dose overlay"></a>
+        <p>Overlay showing dose (magma colormap) on CT slice.</p>
+      </div>
+
+      <div class="card">
+        <h3>DVH example</h3>
+        <a href="assets/images/dvh_sample.png" target="_blank"><img src="assets/images/dvh_sample.png" alt="DVH"></a>
+        <p>Dose–volume histogram computed from synthetic dose + mask.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dose slice (raw)</h3>
+        <a href="assets/images/dose_sample.png" target="_blank"><img src="assets/images/dose_sample.png" alt="Dose sample (slice) PNG"></a>
+        <p>A single dose slice visualized (saved as PNG).</p>
+      </div>
+
+    </div>
+
+    <h2>Commands</h2>
+    <pre>python scripts/read_dicom.py --save examples/CT_small.png
+python scripts/overlay_dose_ct.py --ct path/to/ct.dcm --dose path/to/dose.npy --out examples/overlay.png
+python scripts/compute_dvh.py --dose examples/dose_sample.npy --mask examples/mask_sample.npy --out examples/dvh_sample.png</pre>
+
+    <hr>
+    <p>Pages generated automatically by CI. If you don't see updates immediately, give GitHub a minute to publish.</p>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+name: Publish docs to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy example images into docs
+        run: |
+          mkdir -p docs/assets/images
+          cp -v examples/* docs/assets/images/ || true
+
+      - name: Ensure docs has CT_small fallback
+        run: |
+          # If repo does not have a small CT PNG yet, try to save one from examples if exists
+          if [ -f docs/assets/images/overlay_sample.png ] && [ ! -f docs/assets/images/CT_small.png ]; then
+            cp docs/assets/images/overlay_sample.png docs/assets/images/CT_small.png || true
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          keep_files: true
